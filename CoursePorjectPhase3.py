@@ -1,7 +1,6 @@
 import datetime
 
 def is_valid_date(date_str):
-    
     try:
         datetime.datetime.strptime(date_str, "%m/%d/%Y")
         return True
@@ -9,13 +8,11 @@ def is_valid_date(date_str):
         return False
 
 def write_employee_data(filename, data):
-    
     with open(filename, "a") as f:
         f.write("|".join(str(item) for item in data) + "\n")
 
 def generate_report(filename):
-    """Generates an employee report based on user input."""
-
+    
     from_date_input = input("Enter the From Date (mm/dd/yyyy) or 'All': ")
 
     if from_date_input.lower() != "all" and not is_valid_date(from_date_input):
@@ -41,7 +38,7 @@ def generate_report(filename):
             rate = float(rate)
             tax_rate = float(tax_rate)
 
-            if from_date_input.lower() == "all" or from_date == from_date_input:
+            if from_date_input.lower() == "all" or from_date_input == "" or from_date == from_date_input:
                 gross_pay = hours * rate
                 income_tax = gross_pay * tax_rate
                 net_pay = gross_pay - income_tax
@@ -59,10 +56,10 @@ def generate_report(filename):
     print(f"Total Income Tax: ${totals['tax']:.2f}")
     print(f"Total Net Pay: ${totals['net_pay']:.2f}")
 
-# Example usage (replace with your actual data entry loop):
+# Example usage
 filename = "employee_data.txt"
 
-# Simulate data entry (replace with your actual data entry loop)
+# Simulate data entry
 employee_data = [
     ("01/01/2023", "01/15/2023", "Alice", 40, 20, 0.20),
     ("01/01/2023", "01/15/2023", "Bob", 35, 25, 0.25),
